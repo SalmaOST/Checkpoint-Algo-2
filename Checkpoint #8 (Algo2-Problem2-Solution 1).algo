@@ -1,0 +1,35 @@
+//PROBLEM 2 SOLUTION 1 WITH AN ARRAY
+ALGORITHM SumOverlappingElement
+VAR
+    set1: ARRAY_OF INTEGER[0..100];
+    set2: ARRAY_OF INTEGER[0..100];
+    SumOver : INTEGER:=0;
+    i,j,n,m= INTEGER
+
+BEGIN
+    //REMPLISSAGE ET CREATION DU TABLEAU 1
+    write("Donnez la taille du tableau 1");
+    Read(n);
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        write("Donnez l'element a l'index",i);
+        Read(set1[i]);
+    END_FOR
+//REMPLISSAGE ET CREATION DU TABLEAU 2
+     write("Donnez la taille du tableau 2");
+    Read(m);
+    FOR j FROM 0 TO m-1 STEP 1  DO
+        write("Donnez l'element a l'index"j,);
+        Read(set2[j]);
+    END_FOR
+//RESOLUTION DU PROBLEME 2
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        FOR j FROM 0 TO m-1 STEP 1  DO
+            IF (set1[i] == set2[j]) DO
+            SumOver= set1[i] + set2[j];
+            END_IF
+        END_FOR    
+    END_FOR
+    RETURN SumOver;
+END
+
+

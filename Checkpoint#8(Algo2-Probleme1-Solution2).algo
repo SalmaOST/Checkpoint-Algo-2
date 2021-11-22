@@ -1,0 +1,46 @@
+//PROBLEM 1 SOLUTION 2 WITH A HASHTABLE
+ALGORITHM SumDistinctElement
+VAR
+    Set1:HASH_TABLE<INTEGER,INTEGER>;
+    Set2::HASH_TABLE<INTEGER,INTEGER>;
+    SumDistinctNum:INTEGER:=0;
+    i,j,n,m:INTEGER
+    RecupElem:STRING;
+    ElementsSet1: INTEGER;
+    ElementsSet2:INTEGER
+    Find:BOOLEAN;
+BEGIN
+     write("Donnez la taille du Hashtable")
+     Read (n)
+//recuperation du hashtable1
+     FOR i FROM 0 TO n STEP 1  DO
+        write("donnez l'element a l'indice "+i)
+        RecupElem=RecupElem+i
+        Read(RecupElem)
+        Set1.insert(i,RecupElem) 
+     END_FOR
+//recuperation du hashtable2
+    FOR j FROM 0 TO n STEP 1  DO
+        Write("donnez l'element a l'indice "+j)
+        RecupElem=RecupElem+j
+        Read(RecupElem)
+        Set2.insert(j,RecupElem) 
+     END_FOR
+//RESOLUTION DU PROBLEME
+    FOR i FROM 0 TO n STEP 1 DO
+        ElementsSet1:=set1.get(i);
+        Find:=set2.search(ElementsSet1);
+        IF (Find == FALSE) THEN
+          SumDistinctNum+=ElementsSet1
+        END_IF
+    END_FOR
+    FOR j FROM 0 TO m STEP 1 DO
+         ElementsSet2:=Set2.get(j);
+        Find:=Set1.search(ElementsSet2);
+        IF (Find == FALSE) THEN
+          SumDistinctNum+=ElementsSet2
+        END_IF
+    END_FOR
+    Write("La somme des nombres distinct:"+SumDistinctNum);
+END
+

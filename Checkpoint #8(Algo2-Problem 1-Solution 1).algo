@@ -1,0 +1,90 @@
+//PROBLEM 1 SOLUTION 1 WITH AN ARRAY
+ALGORITHM Checkpoint8 
+VAR
+    Set1:ARRAY_OF INTEGER [1..100];
+    Set2:ARRAY_OF INTEGER[1..100];
+    SumDistintNum:INTEGER:=0;
+    i,j,n,m:INTEGER
+    SumDoub:INTEGER:=0
+    SumTabs:INTEGER:=0
+BEGIN
+//REMPLISSAGE ET CREATION DU TABLEAU 1
+    write("Donnez la taille du tableau 1");
+    Read(n);
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        write("Donnez l'element a l'index",i);
+        Read(set1[i]);
+        SumTabs+=set1[i];
+    END_FOR
+//REMPLISSAGE ET CREATION DU TABLEAU 2
+     write("Donnez la taille du tableau 2");
+    Read(m);
+    FOR j FROM 0 TO m-1 STEP 1  DO
+        write("Donnez l'element a l'index"j,);
+        Read(set2[j]);
+        SumTabs+=set2[j];
+    END_FOR
+//RESOLUTION DU PROBLEME 1
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        FOR j FROM 0 TO m-1 STEP 1  DO
+            IF (set1[i] == set2[j]) DO
+              Sumdoub+=(set1[i]*2)  
+            END_IF    
+        END_FOR        
+    END_FOR
+    SumDistintNum=SumTabs-SumDoub ;
+    RETURN SumDistintNum;
+END
+
+
+//PROBLEM 1 SOLUTION 2 WITH A HASHTABLE
+ALGORITHM SumDistinctElement
+VAR
+    Set1:HASH_TABLE<INTEGER,INTEGER>;
+    Set2::HASH_TABLE<INTEGER,INTEGER>;
+    SumDistinctNum:INTEGER:=0;
+    i,j,n,m:INTEGER
+    RecupElem:STRING;
+    ElementsSet1: INTEGER;
+    ElementsSet2:INTEGER
+    Find:BOOLEAN;
+BEGIN
+     write("Donnez la taille du Hashtable")
+     Read (n)
+//recuperation du hashtable1
+     FOR i FROM 0 TO n STEP 1  DO
+        write("donnez l'element a l'indice "+i)
+        RecupElem=RecupElem+i
+        Read(RecupElem)
+        Set1.insert(i,RecupElem) 
+     END_FOR
+//recuperation du hashtable2
+    FOR j FROM 0 TO n STEP 1  DO
+        Write("donnez l'element a l'indice "+j)
+        RecupElem=RecupElem+j
+        Read(RecupElem)
+        Set2.insert(j,RecupElem) 
+     END_FOR
+//RESOLUTION DU PROBLEME
+    FOR i FROM 0 TO n STEP 1 DO
+        ElementsSet1:=set1.get(i);
+        Find:=set2.search(ElementsSet1);
+        IF (Find == FALSE) THEN
+          SumDistinctNum+=ElementsSet1
+        END_IF
+    END_FOR
+    FOR j FROM 0 TO m STEP 1 DO
+         ElementsSet2:=Set2.get(j);
+        Find:=Set1.search(ElementsSet2);
+        IF (Find == FALSE) THEN
+          SumDistinctNum+=ElementsSet2
+        END_IF
+    END_FOR
+    Write("La somme des nombres distinct:"+SumDistinctNum);
+END
+
+
+
+
+
+
